@@ -15,7 +15,7 @@ Or with yarn:
 yarn add react-withcontainer
 ```
 
-## Basic Usage
+## Usage
 
 ### Container
 
@@ -86,9 +86,7 @@ export const ExampleContainer = (props: ExampleContainerProps) => {
     let Component = component;
 
     return (
-        <Component {...rest}
-			model={model} laod={load} save={save}
-        />
+        <Component {...rest} model={model} laod={load} save={save} />
     );
 };
 ```
