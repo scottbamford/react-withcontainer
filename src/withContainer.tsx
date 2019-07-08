@@ -11,9 +11,9 @@ import { ContainerComponentProps } from './ContainerComponentProps';
  * @param Container
  * @param props
  */
-export function withContainer<ContainerProps extends ContainerComponentProps = any, PresenterProps = any>(Container: React.ComponentType<ContainerProps>, props?: Partial<ContainerProps>): ((component: React.ComponentType<PresenterProps>) => React.ComponentClass<Omit<ContainerProps, 'container'>>) {
-    var wrapper = (Component: React.ComponentType<PresenterProps>): React.ComponentClass<Omit<ContainerProps, 'container'>> => {
-        return class extends React.Component<Omit<ContainerProps, 'container'>> {
+export function withContainer<ContainerProps extends ContainerComponentProps = any, PresenterProps = any>(Container: React.ComponentType<ContainerProps>, props?: Partial<ContainerProps>): ((component: React.ComponentType<PresenterProps>) => React.ComponentClass<Partial<ContainerProps>>) { // TODO switch to Omit<ContainerProps, 'container'> instead of Partial<ContainerProps> when toolchain has caught up with Typescript 3.5.
+    var wrapper = (Component: React.ComponentType<PresenterProps>): React.ComponentClass<Partial<ContainerProps>> => {
+        return class extends React.Component<Partial<ContainerProps>> {
             static displayName = `withContainer(${getDisplayName(Container)})(${getDisplayName(Component)})`;
 
             render() {
