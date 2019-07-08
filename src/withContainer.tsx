@@ -11,15 +11,15 @@ import { ContainerComponentProps } from './ContainerComponentProps';
  * @param Container
  * @param props
  */
-export function withContainer<ContainerProps extends ContainerComponentProps = any, PresenterProps = any>(Container: React.ComponentType<ContainerProps>, props?: Partial<ContainerProps>): ((component: React.ComponentType<PresenterProps>) => React.ComponentClass<ContainerProps>) {
-    var wrapper = (Component: React.ComponentType<PresenterProps>): React.ComponentClass<ContainerProps> => {
-        return class extends React.Component<ContainerProps> {
+export function withContainer<ContainerProps extends ContainerComponentProps = any, PresenterProps = any>(Container: React.ComponentType<ContainerProps>, props?: Partial<ContainerProps>): ((component: React.ComponentType<PresenterProps>) => React.ComponentClass<Omit<ContainerProps, 'container'>>) {
+    var wrapper = (Component: React.ComponentType<PresenterProps>): React.ComponentClass<Omit<ContainerProps, 'container'>> => {
+        return class extends React.Component<Omit<ContainerProps, 'container'>> {
             static displayName = `withContainer(${getDisplayName(Container)})(${getDisplayName(Component)})`;
 
             render() {
                 let { ...rest } = this.props;
 
-                return (<Container {...rest} {...{ component: Component }} {...(props ? props : {})} />);
+                return (<Container {...rest} {...{ component: Component }} {...(props ? props as any : {})} />);
             }
         };
     };

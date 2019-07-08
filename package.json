@@ -1,6 +1,6 @@
 {
   "name": "react-withcontainer",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "HOC that allows ioc for presenter (Uis) to wrap themselves in containers passing themselves to the container as props.container.",
   "main": "dist/lib/commonjs/index.js",
   "module": "dist/lib/esm/index.js",
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.8.16",
-    "typescript": "3.4.5",
+    "typescript": "^3.5.2",
     "rimraf": "^2.6.3"
   }
 }
