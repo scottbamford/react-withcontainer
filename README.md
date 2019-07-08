@@ -35,8 +35,8 @@ export interface ExampleContainerProps extends ContainerComponentProps {
 }
 
 interface Model {
-	id: string,
-	name: string
+    id: string,
+    name: string
 }
 
 /**
@@ -45,7 +45,7 @@ interface Model {
 export interface ExampleContainerUiProps {
     model: Model | undefined,
 
-	changeModel: (changes: Partial<Model>) => void,
+    changeModel: (changes: Partial<Model>) => void,
     load: () => Promise<boolean>
     save: () => Promise<boolean>
 }
