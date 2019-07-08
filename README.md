@@ -34,13 +34,18 @@ export interface ExampleContainerProps extends ContainerComponentProps {
     // Additional props for the container.
 }
 
+interface Model {
+	id: string,
+	name: string
+}
+
 /**
  * These are the props the container will pass on to its Presenter/Ui.
  */
-export interface ExampleContainerUiProps<T = any> {
-    model: T | undefined,
+export interface ExampleContainerUiProps {
+    model: Model | undefined,
 
-	changeModel: (changes: Partial<T>) => void,
+	changeModel: (changes: Partial<Model>) => void,
     load: () => Promise<boolean>
     save: () => Promise<boolean>
 }
@@ -49,7 +54,7 @@ export interface ExampleContainerUiProps<T = any> {
 export const ExampleContainer = (props: ExampleContainerProps) => {
     const { component, id, ...rest } = props;
 	
-    const [model, setModel] = React.useState<any | undefined>(undefined);
+    const [model, setModel] = React.useState<Model | undefined>(undefined);
 
 	// Change the fields in the model in a controlled way using setModel.
     const changeModel = React.useCallback((changes: Partial<UserProfile>) => {
@@ -117,7 +122,7 @@ export const ExampleUi = (props: ExampleContainerUiProps) => {
     }, [props.changeModel]);
 
     return (
-        <Container className="main-container">
+        <Container>
             <Form onSubmit={onSubmit}>
                 <FormGroup>
                     <Label htmlFor="name">Name</Label>
@@ -126,7 +131,7 @@ export const ExampleUi = (props: ExampleContainerUiProps) => {
 
                 <div>
                     <Button type="submit" color="primary">
-                        <FontAwesomeIcon icon="save" /> Save
+                        Save
                     </Button>
                 </div>
             </Form>
